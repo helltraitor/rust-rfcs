@@ -69,7 +69,7 @@ impl Draw for Point<`_ as `x, `_ as `y, `_ as `color> {
 }
 
 // Point under exact usagetimes
-// here `_ of Trait bound to `x, `y, `color of Point
+// here `_ of Trait bound to `x, `y, `color of impl
 impl<`x, `y, `color> Draw for Point<`x, `y, `color> {
     fn draw(&self, surface: &mut Surface) { /* ... */ }
 }
@@ -173,6 +173,7 @@ trait Point<`coords, `color> {
     fn color_mut(&`color mut self) -> &mut Color;
 }
 
+// here `coords and `color provided automatically by Point trait
 // `color of Point bounds automatically to Point1 `color
 impl Point for Point1D<`coords as `x> {
     fn coords_ref(&`coords self) -> Vec<&f64> {
@@ -296,6 +297,7 @@ Assume, we want to set `x` to `y` field:
 
 ```rust
 impl PointVariants {
+    // usagetimes can be provided locally for exact types
     // Here `y inherits mut from both, but x is ref only
     fn set_x_to_y<`both: ref `x + `y>(&`both mut self) {
         // Enum under `both usage
