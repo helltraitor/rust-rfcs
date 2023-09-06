@@ -47,18 +47,13 @@ struct Point<`x, `y, `color> {
     c: `color u32
 }
 
-// Note: By default, auto bounding, allows to not define usagetimes manually,
-//       and takes same usagetimes that defined in source.
-//       For traits, source is trait itself, for impl block source is type
-impl Point {
+impl<`x, `y, `color, `coords: `x + `y> Point<`x, `y, `color> {
     // Mut self under color usagetime
     pub fn color_mut(&`color mut self) -> &mut Color {
         self.c
     }
 
-    // usagetimes `x, `y must be assigned to Point<`x, `y> with same names
-    // `a, `b can be assigned with as keyword Point<`a as `x, `b as `y>
-    pub fn coords_mut<`coords: `x + `y>(&`coords mut self) -> (&mut f64, &mut f64) {
+    pub fn coords_mut(&`coords mut self) -> (&mut f64, &mut f64) {
         (&mut self.x, &mut self.y)
     }
 }
