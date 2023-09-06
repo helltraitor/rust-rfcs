@@ -70,13 +70,13 @@ impl Draw for Point {
 
 // Same as previous, `_ exist here for trait and can be used for specifying usagetimes of Point
 impl Draw for Point<`_ as `x, `_ as `y, `_ as `color> {
-    pub fn draw(&self, surface: &mut Surface) { /* ... */ }
+    fn draw(&self, surface: &mut Surface) { /* ... */ }
 }
 
 // Point under exact usagetimes
 // here `_ of Trait bound to `x, `y, `color of Point
 impl<`x, `y, `color> Draw for Point<`x, `y, `color> {
-    pub fn draw(&self, surface: &mut Surface) { /* ... */ }
+    fn draw(&self, surface: &mut Surface) { /* ... */ }
 }
 ```
 
@@ -1383,11 +1383,11 @@ trait Point<`x, `y, `both: `x + `y> {
 
 // Automatically bounds `x Point to `x Point2D, `y Point to `y Point2D, both doesn't overlapping with `x and `y in Point2D
 impl Point for Point2D {
-    pub fn x_ref(&`x self) -> &f64 {
+    fn x_ref(&`x self) -> &f64 {
         self.x
     }
 
-    pub fn x_mut(&`x mut self) -> &mut f64 {
+    fn x_mut(&`x mut self) -> &mut f64 {
         self.x
     }
 
