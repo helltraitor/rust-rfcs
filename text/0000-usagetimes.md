@@ -866,25 +866,6 @@ impl PointVariants {
 }
 ```
 
-When we preform such magic stuff, we can ensure that there is no other variant:
-
-```rust
-impl PointVariants {
-    fn replace_x_value(&`x mut self, value: f64) {
-        // Here compiler sure, that under `x usagetime only one variant appropriate
-        // This is only side effect, and such syntax doesn't proposed in this RFC
-        self.x = value;
-
-        // Note: in case when some variant will have `x usagetime, for example
-        //       PointVariants::D1Other(&mut Point*D<`x>)
-        //       We still will get compiler error
-    }
-}
-```
-
-Again, this is side effect, that can be omitted (because it would add some strange semantic).
-Instead, it can be used in some optimizations!
-
 In examples above, we define **usagetimes** as vertical kebab, what if we try to make it horizontal?
 
 ```rust
