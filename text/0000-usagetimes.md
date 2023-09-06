@@ -1567,10 +1567,10 @@ impl<`first, `second> Trait<`first, `second> for Struct<`first, `second> {}
 // For this example, assume, you are rust compiler, so you already know that implementations are correct
 
 // With usagetimes we can be sure that this signature working with different objects
-fn different_objects<`first>(first: &`first mut dyn Trait, other: &`first mut dyn Trait) {}
+fn different_objects<`first>(first: &mut dyn Trait<`first>, other: &mut dyn Trait<`first>) {}
 
 // Here we can be sure, that function can accept same trait object
-fn maybe_same_objects<`first, `second>(first: &`first mut Trait, second: &`second mut Trait) {}
+fn maybe_same_objects<`first, `second>(first: &mut Trait<`first>, second: &mut Trait<`second>) {}
 
 // This function just shows which errors will be got when trying to pass same object in "different_objects" function
 // As for me, all is obvious, hope for you same too
